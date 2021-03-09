@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}View Your Data{% endblock %}
+{% block content %}
+{% load static %}
+<div class="text-center text-success"> <h2>View your data </h2>
+<span style="color:black;">Enter email or phone number and click on search buttom to check your data </span>
+</div>
+<form method="post" action= "/viewdata">
+ 
+{% csrf_token %}
+
+
+<div class="row mb-2 p-2">
+  <div class="form-floating col  mb-2 p-2">
+    
+    <input type="email" class="form-control" id="email"  name="email" placeholder="Enter email id">
+    <label for="exampleInputEmail1" class="form-label">Email address </label>
+  </div>
+
+   <div class="form-floating col mb-2 p-2">
+    
+    <input type="text" class="form-control" id="phone"  name="phone" placeholder="Enter Phone Number">
+    <label for="receipt_no" class="form-label">Phone Number </label>
+  </div>
+</div>
+
+<div class="text-center">
+ <div class=" col-auto form-floating height-30">
+  <button type="submit" class="btn btn-primary">Search</button>
+</div>
+
+</div>
+
+
+</form>
+<hr>
+<div >
+{% if allData %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Plot No</th>
+      <th scope="col">Paid Amount</th>
+      <th scope="col">Project Name</th>
+      <th scope="col">CNIC</th>
+      <th scope="col">WhatsApp Group</th>
+      <th scope="col">Receipt Name</th>
+      <th scope="col">Country</th>
+      <th scope="col">City</th>
+      <th scope="col">Additional Details</th>
+
+      <th scope="col">Created on</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in allData %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{data.name}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.phone}}</td>
+      <td>{{data.plot_no}}</td>
+      <td>{{data.paid_amount}}</td>
+      <td>{{data.project_name}}</td>
+      <td>{{data.cnic}}</td>
+      <td>{{data.whatsapp_group}}</td>
+      <td>{{data.receipt_no}}</td>
+      <td>{{data.country}}</td>
+      <td>{{data.city}}</td>
+      <td>{{data.additional_details}}</td>
+      <td>{{data.created_on}}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+      
+{% endif %} 
+    </div>
+    
+    
+    
+
+
+
+{% endblock%}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Upload Data{% endblock %}
+{% block content %}
+{% load static %}
+
+
+
+<div class=" container-sm">
+<div > <h2>Please provide details </h2>(<span style="color:red;">*</span>) Marked field are required</div>
+
+<form method="post" action= "/uploaddata">
+ <div class="row">
+{% csrf_token %}
+  <div class="form-floating col mb-2 p-2">
+    
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enetr your name" >
+    <label for="name"  class="form-label">Name<span style="color:red;">*</span></label>
+   <span class="text-danger">{{ form.errors.name }}</span>
+   
+  </div>
+   
+  </div>
+
+<div class="row">
+  <div class="form-floating col  mb-2 p-2">
+    
+    <input type="email" class="form-control" id="email"  name="email" placeholder="Enter email id">
+    <label for="exampleInputEmail1" class="form-label">Email address <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.email }}</span>
+  </div>
+
+   <div class="form-floating col mb-2 p-2">
+    
+    <input type="text" class="form-control" id="phone"  name="phone" placeholder="Enter Phone Number">
+    <label for="phone" class="form-label">Phone Number <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.phone }}</span>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="form-floating col  mb-2 p-2">
+    
+    <input type="text" class="form-control" id="plot_no"  name="plot_no" placeholder="Enter plot number">
+    <label for="plot_no" class="form-label">Plot # <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.plot_no }}</span>
+  </div>
+
+  <div class="form-floating col  mb-2 p-2">
+    
+    <input type="number" class="form-control" id="paid_amount"  style="text-align: right;"  name="paid_amount" placeholder="Enter paid amount">
+    <label for="paid_amount" class="form-label">Paid Amount <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.paid_amount }}</span>
+  </div>
+
+    
+   </div>
+
+<div class="row">
+<div class="form-floating col  mb-2 p-2">
+    
+    <input type="text" class="form-control" id="project_name"  name="project_name" placeholder="Enter Project name">
+    <label for="project_name" class="form-label">Project Name <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.project_name }}</span>
+  </div>
+
+    <div class="form-floating col  mb-2 p-2">
+    
+    <input type="text" class="form-control" id="cnic"  name="cnic" placeholder="Enter CNIC">
+    <label for="cnic" class="form-label">CNIC <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.cnic }}</span>
+  </div>
+</div>
+
+<div class="row">
+ <div class="form-floating  col mb-2 p-2">
+    
+    <input type="text" class="form-control" id="whatsapp_group"  name="whatsapp_group" placeholder="Enetr Whatsapp Group Name">
+    <label for="whatsapp_group" class="form-label required">Whatsapp Group Name</label>
+  
+  </div>
+ 
+<div class="form-floating col  mb-2 p-2">
+    
+    <input type="text" class="form-control" id="receipt_no"  name="receipt_no" placeholder="Enter Receipt Number">
+    <label for="receipt_no" class="form-label">Receipt Number <span style="color:red;">*</span></label>
+  <span class="text-danger">{{ form.errors.receipt_no }}</span>
+  </div>
+  </div>
+
+<div class="row">
+ <div class="form-floating  col mb-2 p-2">
+    
+    <input type="text" class="form-control" id="country"  name="country" placeholder="Enetr your current country name">
+    <label for="country" class="form-label">Current Cuntry Name</label>
+  
+  </div>
+ 
+<div class="form-floating col  mb-2 p-2">
+    
+    <input type="text" class="form-control" id="city"  name="city" placeholder="Enter Current City Name">
+    <label for="city" class="form-label">Current City Name </label>
+  
+  </div>
+  </div>
+ 
+<div class="row">
+    <div class=" col form-floating mb-2 p-2">
+    
+    <input type="textarea" class="form-control" id="additional_details"  name="additional_details" placeholder="Enter additional details">
+    <label for="additional_details" class="form-label">Additional Details</label>
+  
+  </div>
+</div>
+
+
+
+<div class="row text-center">
+ <div class=" col-auto form-floating">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+
+</form>
+
+</div>
+{% endblock%}
