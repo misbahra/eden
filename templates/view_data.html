@@ -26,10 +26,13 @@
 
 <div class="text-center">
  <div class=" col-auto form-floating height-30">
-  <button type="submit" class="btn btn-primary">Search</button>
+  <button type="submit" class="btn btn-primary ms-5">Search</button>
+  {% if email == "hmail@test.com" %}
+  <a href="exportexcel" class="btn btn-danger ">Export</a>
+  {% endif  %}
 </div>
 
-</div>
+
 
 
 </form>

@@ -5,6 +5,8 @@ from edenVictims.models import victims_data
 from django.contrib import messages
 from django.db.models import Q
 from .forms import edenVictimsForm
+import xlwt
+       
 
 # Create your views here.
 def home(request):
@@ -142,7 +144,72 @@ def view_data(request):
         allData = victims_data.objects.filter(Q(email=email) | Q(phone=phone))
 
         #allData = victims_data.objects.all()
-        context= {'allData': allData}
+        context= {'allData': allData , 'email' : email}
         return render(request, 'view_data.html', context)
     else:
         return render(request, 'view_data.html')
+
+def export_excel(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['content-disposition'] = 'attachment; filename=edenvictims' + \
+        str(datetime.now()) + '.xls' 
+    wb = xlwt.Workbook(encoding = 'utf-8')
+    ws = wb.add_sheet('EdenVictims')
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font = xlwt.Font()
+    font.bold = True
+    font_style.font=font
+
+   
+    
+    columns = [ 'id',
+                'name' ,
+                'plot_no' ,
+                'project_name' ,
+                'paid_amount' ,
+                'cnic' ,
+                'whatsapp_group' ,
+                'receipt_no' ,
+                'email',
+                'phone' ,
+                'country' ,
+                'city' ,
+                'additional_details' ,
+                'created_on' ]
+
+    for col_num in range (len(columns)):
+        ws.write(row_num , col_num , columns[col_num], font_style )
+
+    font_style = xlwt.XFStyle()
+    font = xlwt.Font()
+    font.bold = False
+    font_style.font=font
+
+    rows = victims_data.objects.all().values_list(
+                'id',
+                'name' ,
+                'plot_no' ,
+                'project_name' ,
+                'paid_amount' ,
+                'cnic' ,
+                'whatsapp_group' ,
+                'receipt_no' ,
+                'email',
+                'phone' ,
+                'country' ,
+                'city' ,
+                'additional_details' ,
+                'created_on' 
+    )
+
+    
+    for row in rows:
+        row_num += 1
+
+        for col_num in range(len(row)):
+            ws.write(row_num , col_num , str(row[col_num]), font_style )
+
+    wb.save(response)
+    return response

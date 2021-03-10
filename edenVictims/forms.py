@@ -92,7 +92,7 @@ class edenVictimsForm(ModelForm):
                 'Receipt no. is required'])
 
         if  whatsapp_group == None :
-            self.cleaned_data['whatsapp_group'] = "My Group"
+            self.cleaned_data['whatsapp_group'] = "Eden Mutasreen Ki Awaz 7"
             
 
         if  country == None :

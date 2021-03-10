@@ -7,4 +7,5 @@ urlpatterns = [
     path('home', views.home, name='home'),
     path('uploaddata', views.upload_data, name='upload_data'),
     path('viewdata', views.view_data, name='view_data'),
+    path('exportexcel', views.export_excel, name='export_excel'),
 ]
