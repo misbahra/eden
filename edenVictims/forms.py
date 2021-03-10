@@ -56,10 +56,10 @@ class edenVictimsForm(ModelForm):
             self._errors['name'] = self.error_class([
                 'Name is required'])
 
-        if  email == None :
-            is_error = True
-            self._errors['email'] = self.error_class([
-                'Email is required'])
+        # if  email == None :
+        #     is_error = True
+        #     self._errors['email'] = self.error_class([
+        #         'Email is required'])
 
         if  phone == None :
             is_error = True
@@ -90,6 +90,9 @@ class edenVictimsForm(ModelForm):
             is_error = True
             self._errors['receipt_no'] = self.error_class([
                 'Receipt no. is required'])
+
+        if  email == None :
+            self.cleaned_data['email'] = "none@none.com"
 
         if  whatsapp_group == None :
             self.cleaned_data['whatsapp_group'] = "Eden Mutasreen Ki Awaz 7"
